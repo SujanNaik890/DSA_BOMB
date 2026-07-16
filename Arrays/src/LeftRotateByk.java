@@ -1,0 +1,2 @@
+public class LeftRotateByk {
+}
