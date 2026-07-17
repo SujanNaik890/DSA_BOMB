@@ -1,2 +1,6 @@
 public class RotateArray {
+//    git status
+//    git add .
+//    git commit -m "Solved Two Sum"
+//    git push origin main
 }
