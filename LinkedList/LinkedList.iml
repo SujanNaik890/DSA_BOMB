@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/DoublyLinkedList" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/singlyLinkedlist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CircularSinglyLinkedList/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CirculatdoulblyLinkedList" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

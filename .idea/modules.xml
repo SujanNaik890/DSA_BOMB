@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Arrays/Arrays.iml" filepath="$PROJECT_DIR$/Arrays/Arrays.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LinkedList/CircularLinkedList/CircularLinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/CircularLinkedList/CircularLinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LinkedList/CircularSinglyLinkedList/CircularSinglyLinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/CircularSinglyLinkedList/CircularSinglyLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/DSA.iml" filepath="$PROJECT_DIR$/.idea/DSA.iml" />
       <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/Arrays/typesofAlogorithms/typesofAlogorithms.iml" filepath="$PROJECT_DIR$/Arrays/typesofAlogorithms/typesofAlogorithms.iml" />
