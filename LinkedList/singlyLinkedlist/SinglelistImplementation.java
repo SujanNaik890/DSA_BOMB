@@ -1,3 +1,4 @@
+
 public class SinglelistImplementation {
     public static void main(String[] args) {
   LinkeedList list=new LinkeedList();
@@ -17,15 +18,15 @@ public class SinglelistImplementation {
 }
 class Node{
     int data;
-    Node next;
+    Noode next;
     Node(int data){
         this.data=data;
     }
 }
 class LinkeedList{
-    Node head;
+    Noode head;
     void insertAtFirst(int data){
-        Node node=new Node(data);
+        Noode node=new Noode(data);
         node.next=head;
         head=node;
     }
@@ -33,8 +34,8 @@ class LinkeedList{
         if(head==null){
 //            insertAtFirst(data);
         }
-        Node node =new Node(data);
-        Node temp= head;
+        Noode node =new Noode(data);
+        Noode temp= head;
         while(temp.next!=null){
             temp=temp.next;
         }
@@ -49,8 +50,8 @@ class LinkeedList{
             insertAtFirst(data);
             return;
         }
-        Node node = new Node(data);
-        Node temp=head;
+        Noode node = new Noode(data);
+        Noode temp=head;
         int i=0;
         while(i<pos-1 && temp.next!=null){
             temp=temp.next;i++;
@@ -61,7 +62,7 @@ class LinkeedList{
     }
     void deleteAtFirst(){
         if(head==null)return;
-        Node temp=head;
+        Noode temp=head;
         head=head.next;
         temp=null;
     }
@@ -71,14 +72,14 @@ class LinkeedList{
             head=null;
             return;
         }
-        Node temp=head;
+        Noode temp=head;
         while(temp.next.next!=null){temp=temp.next;}
         temp.next=null;
 
     }
     void deleteAtPosition(int data){
         if(head==null)return;
-        Node temp=head;
+        Noode temp=head;
         while(temp.next.next!=null &&temp.next.data!=data){
             temp=temp.next;
         }
@@ -87,7 +88,7 @@ class LinkeedList{
     }
     void Search(int data){
         if(head==null)return;
-        Node temp=head;
+        Noode temp=head;
         int count=1;
         while(temp.data!=data &&temp!=null){
             count++;
@@ -96,7 +97,7 @@ class LinkeedList{
         System.out.println("Element " +data+" Present At index "+count);
     }
     void display(){
-        Node temp=head;
+        Noode temp=head;
         while(temp!=null){
             System.out.print(temp.data+"->");
             temp=temp.next;
