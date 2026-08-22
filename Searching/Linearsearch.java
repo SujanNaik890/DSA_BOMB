@@ -8,7 +8,6 @@ public class Linearsearch {
         {
             if(arr[i]==k){
                 System.out.println("Key Element found at index "+i);
-
             }
         }
 
