@@ -1,0 +1,14 @@
+| Method                    | Purpose                             |
+| ------------------------- | ----------------------------------- |
+| `Arrays.equals()`         | Compare 1D arrays                   |
+| `Arrays.deepEquals()`     | Compare multidimensional arrays     |
+| `Arrays.fill()`           | Fill array with a value             |
+| `Arrays.sort()`           | Sort array                          |
+| `Arrays.parallelSort()`   | Parallel sorting                    |
+| `Arrays.binarySearch()`   | Search in sorted array              |
+| `Arrays.copyOf()`         | Copy array                          |
+| `Arrays.copyOfRange()`    | Copy a range                        |
+| `Arrays.toString()`       | Print 1D array                      |
+| `Arrays.deepToString()`   | Print multidimensional array        |
+| `Arrays.parallelPrefix()` | Compute prefix (cumulative) results |
+| `Arrays.deepHashCode()`   | Hash code for nested arrays         |

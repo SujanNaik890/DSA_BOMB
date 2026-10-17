@@ -1,108 +1,75 @@
 
 public class SinglelistImplementation {
     public static void main(String[] args) {
-  LinkeedList list=new LinkeedList();
+  SinglelistImplementation list=new SinglelistImplementation();
   list.insertAtFirst(10);
   list.insertAtFirst(20);
 
   list.insertAtFirst(30);list.insertAtEnd(100);
-  list.insertAtposition(80,6);
-  list.Search(100);
-  list.display();
-  list.deleteAtEnd();
-  list.deleteAtFirst();
-  list.deleteAtPosition(10);
+  list.insertAtposition(80,3);
+//  list.Search(100);
+//  list.display();
+//  list.deleteAtEnd();
+//  list.deleteAtFirst();
+//  list.deleteAtPosition(10);
   list.display();
     }
 
-}
-class Node{
-    int data;
-    Noode next;
-    Node(int data){
-        this.data=data;
+    class node{
+        int data;
+        node next;
+        node(int data){
+            this.data=data;
+            this.next=null;
+        }
     }
-}
-class LinkeedList{
-    Noode head;
+    node head=null;
+    int size=0;
     void insertAtFirst(int data){
-        Noode node=new Noode(data);
-        node.next=head;
-        head=node;
-    }
-    void insertAtEnd(int data){
+        node newnode =new node(data);
         if(head==null){
-//            insertAtFirst(data);
+            head=newnode;
+            size++;
+        return;
         }
-        Noode node =new Noode(data);
-        Noode temp= head;
-        while(temp.next!=null){
-            temp=temp.next;
-        }
-        temp.next=node;
-    }
-    void insertAtposition(int data,int pos) {
-        if (head == null) {
-            insertAtFirst(data);
-            return;
-        }
-        if (pos == 1) {
-            insertAtFirst(data);
-            return;
-        }
-        Noode node = new Noode(data);
-        Noode temp=head;
-        int i=0;
-        while(i<pos-1 && temp.next!=null){
-            temp=temp.next;i++;
-        }
-        node.next=temp.next;
-        temp.next=node;
-
-    }
-    void deleteAtFirst(){
-        if(head==null)return;
-        Noode temp=head;
-        head=head.next;
-        temp=null;
-    }
-    void deleteAtEnd(){
-        if(head==null)return;
-        if(head.next==null) {
-            head=null;
-            return;
-        }
-        Noode temp=head;
-        while(temp.next.next!=null){temp=temp.next;}
-        temp.next=null;
-
-    }
-    void deleteAtPosition(int data){
-        if(head==null)return;
-        Noode temp=head;
-        while(temp.next.next!=null &&temp.next.data!=data){
-            temp=temp.next;
-        }
-        temp.next=temp.next.next;
-
-    }
-    void Search(int data){
-        if(head==null)return;
-        Noode temp=head;
-        int count=1;
-        while(temp.data!=data &&temp!=null){
-            count++;
-            temp=temp.next;
-        }
-        System.out.println("Element " +data+" Present At index "+count);
+        newnode.next=head;
+        head=newnode;
+        size++;
     }
     void display(){
-        Noode temp=head;
-        while(temp!=null){
+        node temp=head;
+        if(head==null)return;
+        while (temp!=null){
             System.out.print(temp.data+"->");
             temp=temp.next;
         }
         System.out.println("null");
     }
+    void insertAtEnd(int data){
+        if(head==null){insertAtFirst(data);return ;}
+        node newnode=new node(data);
+        node temp=head;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        size++;
+        temp.next=newnode;
+    }
+    void insertAtposition(int data,int pos){
+        if(pos <0)return;
+        if(pos==1){
+            insertAtFirst(data);
+            return;
+        }
+        node temp=head;
+        int i=1;
+        node newnode=new node(data);
+        while(temp.next!=null && i<pos-1){
+            temp=temp.next;
+            i++;
+        }
+        newnode.next=temp.next;
+        temp.next=newnode;
+        size++;
+    }
 }
-

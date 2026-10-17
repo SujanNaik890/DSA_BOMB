@@ -1,4 +1,4 @@
-public class AverageofNodes {
+  public class AverageofNodes {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
 

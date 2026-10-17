@@ -9,9 +9,9 @@ static int countNodes(LinkedList list) {
 
         Noode temp = list.head;
         int count = 0;
-
+        int i=1;
         while (temp != null) {
-            if(temp.data%2!=0) count++;
+            if(i++%2!=0) count++;
             temp = temp.next;
         }
 

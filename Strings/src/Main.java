@@ -1,7 +1,7 @@
 import javax.swing.plaf.synth.SynthTabbedPaneUI;
 import java.util.Arrays;
 
-public class Main {
+public class  Main {
     public static void main(String[] args) {
         String s=new String("Sujan ");
         String s1="Sujan Naik";
