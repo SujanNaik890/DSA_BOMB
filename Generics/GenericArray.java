@@ -5,11 +5,23 @@ import java.util.Arrays;
 class DefineGenericArray <T>{
     private T[] t;
 
-    DefineGenericArray(T x[]){
-        t=x;
+    DefineGenericArray(T t[]){
+        this.t=t;
     }
     void display(){
         System.out.println(Arrays.toString(t));
+    }
+
+    void reverseArray(){
+        int front=0,end=t.length-1;
+
+        while(front<end){
+            T temp=t[front];
+            t[front]=t[end];
+            t[end]=temp;
+            front++;
+            end--;
+        }
     }
 }
 public class GenericArray {
@@ -19,5 +31,14 @@ public class GenericArray {
 //        generics only work with reference types. Use Integer[] instead.
         Integer[] arr={1,2,3,4};
         DefineGenericArray <Integer> intarr =new DefineGenericArray<Integer>(arr);
+        intarr.display();
+        intarr.reverseArray();
+        intarr.display();
+        String[] str={"hello","sujan","naik"};
+        DefineGenericArray<String> strarr=new DefineGenericArray<String>(str);
+        strarr.display();
+        strarr.reverseArray();
+        strarr.display();
+
     }
 }

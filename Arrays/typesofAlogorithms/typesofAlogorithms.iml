@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Kadan'sAlgorithm" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SlidingWindow" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/twopointer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

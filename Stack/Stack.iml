@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Operation" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Questions" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/StackApplication" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

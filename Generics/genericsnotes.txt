@@ -1,0 +1,1390 @@
+# JAVA GENERICS — COMPLETE NOTES
+## Java Programming and DSA Preparation
+
+# 1. INTRODUCTION TO GENERICS
+
+## Definition
+Generics in Java allow classes, interfaces, and methods to work with different data types using type parameters while providing compile-time type safety.
+
+## Example Without Generics
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList list = new ArrayList();
+
+        list.add(10);
+        list.add("Java");
+
+        int n = (int) list.get(0);
+
+        System.out.println(n);
+    }
+}
+```
+
+Without generics, a collection can contain different types of objects, and explicit casting may be required when retrieving values.
+
+## Example With Generics
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        list.add(10);
+        list.add(20);
+        list.add(30);
+
+        int n = list.get(0);
+
+        System.out.println(n);
+    }
+}
+```
+
+Output:
+```text
+10
+```
+
+The following statement produces a compilation error:
+
+```java
+list.add("Java");
+```
+
+This is because the list accepts only Integer elements.
+
+## Advantages of Generics
+
+1. Type safety.
+2. Code reusability.
+3. Fewer explicit type casts.
+4. Compile-time type checking.
+5. Cleaner and more maintainable code.
+
+Remember: Generics provide type safety and reusability.
+
+---
+
+# 2. IMPORTANT TERMS IN GENERICS
+
+Example:
+
+```java
+ArrayList<Integer> numbers = new ArrayList<>();
+```
+
+- ArrayList: Generic class.
+- Integer: Type argument.
+- T or E: Common names for type parameters.
+- ArrayList<Integer>: Parameterized type.
+- <>: Diamond operator when used for type inference.
+
+## Type Parameter vs. Type Argument
+
+Type parameter: A placeholder declared in a generic class or method.
+
+```java
+class Box<T> {
+    T value;
+}
+```
+
+Here, T is a type parameter.
+
+Type argument: The actual type supplied when using the generic class.
+
+```java
+Box<String> box;
+```
+
+Here, String is the type argument.
+
+## Common Type Parameter Names
+
+- T: Type.
+- E: Element.
+- K: Key.
+- V: Value.
+- N: Number.
+- R: Result or return type in some APIs.
+
+These are conventions, not compulsory keywords.
+
+IMPORTANT: Java generics cannot use primitive types directly.
+
+```java
+// Invalid
+// Box<int> box;
+
+// Valid
+Box<Integer> box;
+```
+
+Use wrapper classes such as Integer, Double, Character, and Boolean.
+
+---
+
+# 3. GENERIC CLASS
+
+## Definition
+A generic class is a class that declares one or more type parameters. It can work with different reference types without rewriting the class for each type.
+
+## Syntax
+
+```java
+class ClassName<T> {
+    // Class members
+}
+```
+
+## Example: Generic Class With One Type Parameter
+
+```java
+class Box<T> {
+    T value;
+
+    Box(T value) {
+        this.value = value;
+    }
+
+    void display() {
+        System.out.println("Value: " + value);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Box<Integer> b1 = new Box<>(100);
+        Box<String> b2 = new Box<>("Java");
+        Box<Double> b3 = new Box<>(25.5);
+
+        b1.display();
+        b2.display();
+        b3.display();
+    }
+}
+```
+
+Output:
+```text
+Value: 100
+Value: Java
+Value: 25.5
+```
+
+## Explanation
+
+- class Box<T>: Declares a generic class.
+- T value: Declares a variable of type T.
+- Box<Integer>: Creates a box for Integer values.
+- Box<String>: Creates a box for String values.
+- Box<Double>: Creates a box for Double values.
+
+The same class can be reused with different types.
+
+---
+
+# 4. GENERIC CLASS WITH TWO TYPE PARAMETERS
+
+A generic class can have more than one type parameter.
+
+## Example
+
+```java
+class Pair<T, U> {
+    T first;
+    U second;
+
+    Pair(T first, U second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    void display() {
+        System.out.println("First: " + first);
+        System.out.println("Second: " + second);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Pair<Integer, String> p1 =
+                new Pair<>(101, "Sujan");
+
+        Pair<String, Double> p2 =
+                new Pair<>("Price", 99.5);
+
+        p1.display();
+        p2.display();
+    }
+}
+```
+
+Output:
+```text
+First: 101
+Second: Sujan
+First: Price
+Second: 99.5
+```
+
+Explanation:
+
+- T represents the first type.
+- U represents the second type.
+- Pair<Integer, String> stores an Integer and a String.
+- Pair<String, Double> stores a String and a Double.
+
+DSA applications include storing pairs of values, graph vertices with distances, and elements with priorities.
+
+---
+
+# 5. GENERIC METHODS
+
+## Definition
+A generic method declares its own type parameter and can work with different data types.
+
+A generic method can exist inside a non-generic class.
+
+## Syntax
+
+```java
+static <T> void methodName(T value) {
+    // Method body
+}
+```
+
+The type parameter <T> is declared before the return type.
+
+## Example 1: Generic Method
+
+```java
+public class Main {
+
+    static <T> void display(T value) {
+        System.out.println(value);
+    }
+
+    public static void main(String[] args) {
+        display(100);
+        display("Hello");
+        display(25.5);
+        display('A');
+    }
+}
+```
+
+Output:
+```text
+100
+Hello
+25.5
+A
+```
+
+Explanation:
+
+- <T> declares the type parameter.
+- void means the method does not return a value.
+- T value accepts an argument of the inferred type.
+- Java usually infers T from the argument.
+
+## Example 2: Generic Method Returning a Value
+
+```java
+public class Main {
+
+    static <T> T getValue(T value) {
+        return value;
+    }
+
+    public static void main(String[] args) {
+
+        Integer a = getValue(100);
+        String b = getValue("Java");
+
+        System.out.println(a);
+        System.out.println(b);
+    }
+}
+```
+
+Output:
+```text
+100
+Java
+```
+
+## Example 3: Generic Method With Two Type Parameters
+
+```java
+public class Main {
+
+    static <T, U> void display(T first, U second) {
+        System.out.println(first);
+        System.out.println(second);
+    }
+
+    public static void main(String[] args) {
+        display(10, "Java");
+        display("Price", 99.5);
+    }
+}
+```
+
+Output:
+```text
+10
+Java
+Price
+99.5
+```
+
+## Generic Class vs. Generic Method
+
+Generic class:
+```java
+class Box<T> {
+    T value;
+}
+```
+
+Generic method:
+```java
+static <T> void display(T value) {
+    System.out.println(value);
+}
+```
+
+A generic class declares type parameters at the class level. A generic method declares its own type parameters at the method level.
+
+---
+
+# 6. GENERIC METHODS WITH ARRAYS
+
+Generics can be used to process arrays of reference types.
+
+## Example
+
+```java
+public class Main {
+
+    static <T> void displayArray(T[] arr) {
+        for (T element : arr) {
+            System.out.print(element + " ");
+        }
+
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        Integer[] numbers = {10, 20, 30};
+        String[] names = {"Java", "Python", "C"};
+
+        displayArray(numbers);
+        displayArray(names);
+    }
+}
+```
+
+Output:
+```text
+10 20 30
+Java Python C
+```
+
+IMPORTANT:
+- T[] represents an array of reference-type elements of type T.
+- Integer[] and String[] can be passed to this method.
+- int[] cannot be passed directly as T[] because int is a primitive type.
+
+---
+
+# 7. BOUNDED TYPE PARAMETERS
+
+## Definition
+A bounded type parameter restricts which types can be supplied to a generic class or method.
+
+## Syntax
+
+```java
+<T extends Number>
+```
+
+This means T must be Number or a subclass of Number.
+
+## Example: Bounded Generic Class
+
+```java
+class Calculator<T extends Number> {
+    T value;
+
+    Calculator(T value) {
+        this.value = value;
+    }
+
+    double square() {
+        double n = value.doubleValue();
+        return n * n;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Calculator<Integer> c1 = new Calculator<>(5);
+        Calculator<Double> c2 = new Calculator<>(2.5);
+
+        System.out.println(c1.square());
+        System.out.println(c2.square());
+    }
+}
+```
+
+Output:
+```text
+25.0
+6.25
+```
+
+Valid types include:
+- Integer
+- Double
+- Float
+- Long
+
+Invalid example:
+
+```java
+// Calculator<String> c = new Calculator<>("Hello");
+```
+
+String does not extend Number.
+
+## Why Use Number?
+
+Number provides methods such as:
+
+- intValue()
+- doubleValue()
+- floatValue()
+- longValue()
+
+These methods convert a numeric object to a primitive numeric value.
+
+Remember: The extends keyword in generic bounds can specify a class or an interface.
+
+---
+
+# 8. MULTIPLE BOUNDS
+
+A type parameter can have multiple bounds.
+
+## Syntax
+
+```java
+<T extends ClassName & Interface1 & Interface2>
+```
+
+If a class bound is present, it must come first.
+
+## Example
+
+```java
+interface Printable {
+    void print();
+}
+
+class Demo extends Number implements Printable {
+
+    private final int value;
+
+    Demo(int value) {
+        this.value = value;
+    }
+
+    public int intValue() {
+        return value;
+    }
+
+    public long longValue() {
+        return value;
+    }
+
+    public float floatValue() {
+        return value;
+    }
+
+    public double doubleValue() {
+        return value;
+    }
+
+    public void print() {
+        System.out.println(value);
+    }
+}
+
+class Box<T extends Number & Printable> {
+    T value;
+
+    Box(T value) {
+        this.value = value;
+    }
+
+    void display() {
+        value.print();
+        System.out.println(value.doubleValue());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box<Demo> box = new Box<>(new Demo(10));
+        box.display();
+    }
+}
+```
+
+Output:
+```text
+10
+10.0
+```
+
+Rules:
+1. Multiple bounds are separated using &.
+2. The class bound, if present, must appear first.
+3. Only one class can appear in the bounds.
+4. Interfaces can follow the class bound.
+
+---
+
+# 9. WILDCARDS IN JAVA GENERICS
+
+## Definition
+A wildcard is represented by ? and is used when the exact type argument is unknown.
+
+Example:
+
+```java
+Box<?> box;
+```
+
+Three main types of wildcards:
+
+1. Unbounded wildcard: <?>
+2. Upper-bounded wildcard: <? extends T>
+3. Lower-bounded wildcard: <? super T>
+
+## 9.1 UNBOUNDED WILDCARD (<?>)
+
+An unbounded wildcard accepts a parameterized type with any type argument.
+
+### Example
+
+```java
+class Box<T> {
+    T value;
+
+    Box(T value) {
+        this.value = value;
+    }
+
+    T getValue() {
+        return value;
+    }
+}
+
+public class Main {
+
+    static void display(Box<?> box) {
+        System.out.println(box.getValue());
+    }
+
+    public static void main(String[] args) {
+        Box<Integer> b1 = new Box<>(100);
+        Box<String> b2 = new Box<>("Java");
+
+        display(b1);
+        display(b2);
+    }
+}
+```
+
+Output:
+```text
+100
+Java
+```
+
+Important points:
+- ? represents an unknown type argument.
+- Box<Integer> and Box<String> can both be passed.
+- A value can be read as Object.
+- You generally cannot assign an arbitrary non-null value through a Box<?> reference.
+
+## 9.2 UPPER-BOUNDED WILDCARD (<? extends T>)
+
+Definition:
+
+An upper-bounded wildcard accepts T or a subtype of T.
+
+### Example
+
+```java
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+
+    static double sum(List<? extends Number> numbers) {
+        double total = 0;
+
+        for (Number n : numbers) {
+            total += n.doubleValue();
+        }
+
+        return total;
+    }
+
+    public static void main(String[] args) {
+
+        List<Integer> a = Arrays.asList(10, 20, 30);
+        List<Double> b = Arrays.asList(1.5, 2.5);
+
+        System.out.println(sum(a));
+        System.out.println(sum(b));
+    }
+}
+```
+
+Output:
+```text
+60.0
+4.0
+```
+
+Valid examples:
+- List<Integer>
+- List<Double>
+- List<Float>
+
+Invalid example:
+- List<String>
+
+Important points:
+- Used mainly when reading data.
+- Values can be safely read as Number in this example.
+- You cannot safely insert an arbitrary Number into the list because its exact element type is unknown.
+
+## 9.3 LOWER-BOUNDED WILDCARD (<? super T>)
+
+Definition:
+
+A lower-bounded wildcard accepts T or a supertype of T.
+
+### Example
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    static void addNumbers(List<? super Integer> list) {
+        list.add(10);
+        list.add(20);
+        list.add(30);
+    }
+
+    public static void main(String[] args) {
+
+        List<Integer> a = new ArrayList<>();
+        List<Number> b = new ArrayList<>();
+        List<Object> c = new ArrayList<>();
+
+        addNumbers(a);
+        addNumbers(b);
+        addNumbers(c);
+
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+    }
+}
+```
+
+Output:
+```text
+[10, 20, 30]
+[10, 20, 30]
+[10, 20, 30]
+```
+
+Valid examples:
+- List<Integer>
+- List<Number>
+- List<Object>
+
+Invalid example:
+- List<Double>
+
+Important points:
+- Used mainly when inserting data.
+- You can insert Integer values.
+- When reading, the safest guaranteed type is Object.
+
+## Upper Bound vs. Lower Bound
+
+Upper bound:
+```java
+<? extends Number>
+```
+
+Lower bound:
+```java
+<? super Integer>
+```
+
+Upper bound:
+- Accepts Number or a subtype.
+- Mainly used for reading values.
+
+Lower bound:
+- Accepts Integer or a supertype.
+- Mainly used for inserting values.
+
+## PECS Rule
+
+PECS = Producer Extends, Consumer Super.
+
+Producer Extends:
+Use <? extends T> when a structure produces values you want to read as T.
+
+Consumer Super:
+Use <? super T> when a structure consumes values of type T that you want to insert.
+
+This is a useful guideline, not an absolute rule for every generic API.
+
+---
+
+# 10. GENERIC INTERFACES
+
+An interface can declare a type parameter.
+
+## Example
+
+```java
+interface Container<T> {
+    void add(T item);
+    T get();
+}
+
+class MyContainer<T> implements Container<T> {
+
+    private T item;
+
+    public void add(T item) {
+        this.item = item;
+    }
+
+    public T get() {
+        return item;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        MyContainer<Integer> c1 = new MyContainer<>();
+        c1.add(100);
+
+        MyContainer<String> c2 = new MyContainer<>();
+        c2.add("Java");
+
+        System.out.println(c1.get());
+        System.out.println(c2.get());
+    }
+}
+```
+
+Output:
+```text
+100
+Java
+```
+
+Explanation:
+- Container<T> declares a generic interface.
+- MyContainer<T> implements the interface.
+- The same interface works with different types.
+
+---
+
+# 11. GENERIC CONSTRUCTORS
+
+A constructor can declare its own type parameter, even when the class itself is not generic.
+
+## Example
+
+```java
+class Demo {
+
+    <T> Demo(T value) {
+        System.out.println("Value: " + value);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Demo(100);
+        new Demo("Java");
+    }
+}
+```
+
+Output:
+```text
+Value: 100
+Value: Java
+```
+
+Here, T belongs to the constructor, not to the Demo class.
+
+---
+
+# 12. VARARGS WITH GENERICS
+
+Varargs allow a method to accept a variable number of arguments.
+
+## Example
+
+```java
+public class Main {
+
+    @SafeVarargs
+    static <T> void display(T... values) {
+        for (T value : values) {
+            System.out.print(value + " ");
+        }
+
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        display(10, 20, 30);
+        display("Java", "Python");
+    }
+}
+```
+
+Output:
+```text
+10 20 30
+Java Python
+```
+
+Important points:
+- <T> declares a generic type parameter.
+- T... represents a variable number of arguments.
+- Inside the method, values behaves like an array.
+- @SafeVarargs suppresses certain warnings when the method is genuinely safe.
+
+Do not use @SafeVarargs blindly. It does not automatically make an unsafe method safe.
+
+---
+
+# 13. TYPE ERASURE
+
+## Definition
+
+Type erasure is the process through which the Java compiler removes most generic type information from the runtime representation.
+
+It helps maintain compatibility with older Java code.
+
+## Example
+
+```java
+class Box<T> {
+    T value;
+
+    void set(T value) {
+        this.value = value;
+    }
+
+    T get() {
+        return value;
+    }
+}
+```
+
+For an unbounded T, the erased representation uses Object for the relevant type.
+
+For a bounded T:
+
+```java
+class Calculator<T extends Number> {
+    T value;
+}
+```
+
+The erased representation uses Number for T.
+
+## Important Consequences
+
+1. Primitive type arguments are not allowed.
+
+```java
+// Box<int> b; // Invalid
+Box<Integer> b;
+```
+
+2. You cannot create an instance of T directly.
+
+```java
+class Box<T> {
+    // T value = new T(); // Invalid
+}
+```
+
+3. You cannot directly create an array of a parameterized type.
+
+```java
+// List<String>[] lists = new List<String>[10];
+```
+
+4. You cannot overload methods using only different generic type arguments.
+
+```java
+// void show(List<String> list) {}
+// void show(List<Integer> list) {} // Name clash
+```
+
+After erasure, both methods have the same erased parameter type, List.
+
+Exam point: The compiler checks generic types before type erasure.
+
+---
+
+# 14. RAW TYPES
+
+## Definition
+
+A raw type is a generic class or interface used without specifying a type argument.
+
+## Example
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList list = new ArrayList();
+
+        list.add(10);
+        list.add("Java");
+
+        System.out.println(list);
+    }
+}
+```
+
+Output:
+```text
+[10, Java]
+```
+
+Raw types can compile with unchecked-operation warnings.
+
+## Why Avoid Raw Types?
+
+- They weaken type safety.
+- They can cause runtime casting errors.
+- They make code less clear.
+
+Prefer:
+
+```java
+ArrayList<Integer> list = new ArrayList<>();
+```
+
+Instead of:
+
+```java
+ArrayList list = new ArrayList();
+```
+
+Raw types are mainly encountered in legacy code.
+
+---
+
+# 15. RESTRICTIONS OF GENERICS
+
+## 1. Primitive Types Cannot Be Type Arguments
+
+```java
+// List<int> list; // Invalid
+List<Integer> list;
+```
+
+## 2. Cannot Create an Object of T Directly
+
+```java
+class Box<T> {
+    // T value = new T(); // Invalid
+}
+```
+
+## 3. Cannot Directly Create an Array of a Parameterized Type
+
+```java
+// List<String>[] array = new List<String>[10];
+```
+
+## 4. Cannot Use instanceof With a Fully Parameterized Type
+
+```java
+Object obj = "Java";
+
+// obj instanceof List<String> // Invalid
+```
+
+However, a wildcard parameterized type can be used:
+
+```java
+if (obj instanceof java.util.List<?>) {
+    System.out.println("It is a list");
+}
+```
+
+## 5. Cannot Declare a Static Field Using the Class Type Parameter
+
+```java
+class Box<T> {
+    // static T value; // Invalid
+}
+```
+
+A static method can declare its own type parameter:
+
+```java
+class Box<T> {
+
+    static <U> void display(U value) {
+        System.out.println(value);
+    }
+}
+```
+
+## 6. Generic Types Are Invariant
+
+```java
+List<Integer> integers = new ArrayList<>();
+
+// List<Number> numbers = integers; // Invalid
+```
+
+Even though Integer extends Number, List<Integer> does not extend List<Number>.
+
+---
+
+# 16. GENERICS WITH THE COLLECTIONS FRAMEWORK
+
+Generics are widely used in the Java Collections Framework.
+
+| Collection | Example | Purpose |
+|---|---|---|
+| ArrayList<E> | ArrayList<Integer> | Resizable array |
+| LinkedList<E> | LinkedList<String> | Linked-list-based collection |
+| HashSet<E> | HashSet<Integer> | Stores unique elements |
+| HashMap<K,V> | HashMap<Integer,String> | Stores key-value pairs |
+| Queue<E> | Queue<Integer> | Represents a queue |
+| Stack<E> | Stack<Integer> | Represents a stack |
+
+For new stack implementations, Deque is generally preferred.
+
+## Example: Generic HashMap
+
+```java
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) {
+
+        HashMap<Integer, String> students = new HashMap<>();
+
+        students.put(101, "Aman");
+        students.put(102, "Ravi");
+        students.put(103, "Sujan");
+
+        System.out.println(students.get(102));
+    }
+}
+```
+
+Output:
+```text
+Ravi
+```
+
+Integer represents the key type, and String represents the value type.
+
+## Example: Generic Queue
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.offer(10);
+        queue.offer(20);
+        queue.offer(30);
+
+        System.out.println(queue.poll());
+        System.out.println(queue.peek());
+    }
+}
+```
+
+Output:
+```text
+10
+20
+```
+
+Generics ensure that only Integer elements are added to this queue.
+
+---
+
+# 17. GENERICS AND INHERITANCE
+
+Generic type arguments are invariant by default.
+
+Consider:
+
+```java
+class Animal {}
+class Dog extends Animal {}
+```
+
+This is valid:
+
+```java
+Animal animal = new Dog();
+```
+
+But this is invalid:
+
+```java
+// List<Dog> dogs = new ArrayList<>();
+// List<Animal> animals = dogs; // Invalid
+```
+
+Why?
+
+If this were allowed, an object of another Animal subclass could be inserted into the list, even though the original list was intended to contain only Dog objects.
+
+Use wildcards when a method needs to accept lists of different subtypes.
+
+## Example
+
+```java
+import java.util.List;
+
+static void printAnimals(List<? extends Animal> animals) {
+    for (Animal animal : animals) {
+        System.out.println(animal);
+    }
+}
+```
+
+This can accept List<Dog>, List<Animal>, and List of another Animal subclass.
+
+---
+
+# 18. FREQUENTLY ASKED EXAM QUESTIONS
+
+Q1. What are Generics in Java?
+
+Generics allow classes, interfaces, and methods to operate on different types using type parameters while providing compile-time type safety.
+
+Q2. What is a generic class?
+
+A generic class declares one or more type parameters.
+
+Example:
+
+```java
+class Box<T> {
+    T value;
+}
+```
+
+Q3. What is a generic method?
+
+A generic method declares its own type parameter.
+
+Example:
+
+```java
+static <T> void display(T value) {
+    System.out.println(value);
+}
+```
+
+Q4. What is a bounded type parameter?
+
+It restricts the types that can be supplied to a generic declaration.
+
+Example:
+
+```java
+<T extends Number>
+```
+
+Q5. What is a wildcard?
+
+The ? symbol represents an unknown type argument.
+
+Example:
+
+```java
+List<?> list;
+```
+
+Q6. What is the difference between extends and super?
+
+- <? extends T> accepts T or a subtype of T.
+- <? super T> accepts T or a supertype of T.
+
+Q7. What is type erasure?
+
+Type erasure removes most generic type information from runtime representations while the compiler performs type checking before erasure.
+
+Q8. What is a raw type?
+
+A raw type is a generic type used without specifying its type argument.
+
+Example:
+
+```java
+ArrayList list = new ArrayList();
+```
+
+Q9. Why cannot primitive types be used as generic type arguments?
+
+Java generics use reference types. Wrapper classes such as Integer must be used instead of int.
+
+Q10. What is the diamond operator?
+
+The diamond operator <> allows Java to infer generic type arguments.
+
+Example:
+
+```java
+ArrayList<String> names = new ArrayList<>();
+```
+
+Q11. Can a generic class have multiple type parameters?
+
+Yes.
+
+```java
+class Pair<T, U> {
+    T first;
+    U second;
+}
+```
+
+Q12. What does PECS mean?
+
+Producer Extends, Consumer Super.
+
+Use extends when a structure produces values to read, and super when a structure consumes values to insert.
+
+---
+
+# 19. PRACTICE PROGRAMS FOR DSA PREPARATION
+
+Practice these programs in order:
+
+1. Generic class to store one value.
+2. Generic class to store two values.
+3. Generic method to print different types.
+4. Generic method to swap array elements.
+5. Find the maximum of three numbers using a bounded type parameter.
+6. Generic interface for a container.
+7. Print a list using List<?>.
+8. Sum values from List<? extends Number>.
+9. Add integers to List<? super Integer>.
+10. Generic varargs method.
+11. Demonstrate raw types and type safety.
+12. Use generics with HashMap and Queue.
+
+## Practice Problem: Generic Maximum Method
+
+Write a method that accepts three values and returns the largest one.
+
+Hint:
+
+```java
+<T extends Comparable<T>>
+```
+
+The Comparable<T> interface allows objects to be compared using compareTo().
+
+---
+
+# 20. FINAL REVISION SHEET
+
+| Concept | Syntax | Meaning |
+|---|---|---|
+| Generic class | class Box<T> | Reusable class |
+| Two type parameters | class Pair<T,U> | Two types in one class |
+| Generic method | <T> void display(T x) | Reusable method |
+| Bounded type | <T extends Number> | Restricts allowed types |
+| Unbounded wildcard | <?> | Unknown type |
+| Upper-bounded wildcard | <? extends Number> | Number or subtype |
+| Lower-bounded wildcard | <? super Integer> | Integer or supertype |
+| Generic interface | interface Container<T> | Type-safe interface |
+| Generic varargs | T... values | Variable number of arguments |
+| Raw type | ArrayList list | Generic type used without arguments |
+| Type erasure | Compiler transformation | Removes most generic type information at runtime |
+| Diamond operator | new ArrayList<>() | Infers type arguments |
+
+## SIX RULES TO REMEMBER
+
+1. Generics provide compile-time type safety.
+2. Use wrapper classes instead of primitive types.
+3. <T> declares a type parameter; <?> is a wildcard.
+4. extends means a type or subtype; super means a type or supertype.
+5. List<Integer> is not a subtype of List<Number>.
+6. PECS means Producer Extends, Consumer Super.
+
+## RECOMMENDED STUDY ORDER
+
+1. Generic classes.
+2. Generic methods.
+3. Multiple type parameters.
+4. Bounded type parameters.
+5. Generic interfaces.
+6. Wildcards.
+7. Type erasure and restrictions.
+8. Generics with collections.
+
+After understanding these concepts, practise using ArrayList, LinkedList, Stack, Queue, HashSet, and HashMap to connect Generics with Data Structures and Algorithms.
