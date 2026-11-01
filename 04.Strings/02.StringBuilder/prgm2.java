@@ -4,5 +4,6 @@ public class prgm2 {
         System.out.println(sb);
         sb.setCharAt(0,'L');
         System.out.println(sb);
+
     }
 }
