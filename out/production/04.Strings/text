@@ -1,0 +1,4 @@
+StringBuffer provides and performs all the operations and all crude operations same as StringBuilder
+StringBuffer is also a mutable String Object
+StringBuffer is Synchronized but StringBulider not
+StringBUilder performs on single threads and StringBuilder performs on multiple threads at same time
