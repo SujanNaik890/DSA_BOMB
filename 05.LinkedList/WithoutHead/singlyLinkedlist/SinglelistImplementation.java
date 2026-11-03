@@ -1,5 +1,5 @@
-
-public class SinglelistImplementation {
+public class
+SinglelistImplementation {
     public static void main(String[] args) {
   SinglelistImplementation list=new SinglelistImplementation();
   list.insertAtFirst(10);

@@ -11,6 +11,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Questions" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/operations" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/singlyLinkedlist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WithoutHead" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
